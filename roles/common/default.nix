@@ -25,13 +25,9 @@
     '';
   };
 
-  # custom packages
-  nixpkgs.config.packageOverrides = pkgs: rec {
-    byrun = pkgs.callPackage ../../packages/byrun {};
-  };
-
   # standard set of packages
   environment.systemPackages = with pkgs; [
+    cardano-node
     byrun
     docker-compose
     git

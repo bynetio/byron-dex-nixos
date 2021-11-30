@@ -13,6 +13,7 @@
         inherit system;
         config = { allowUnfree = true; };
         overlays = [
+          cardano-node.overlay
           (import ./packages)
         ];
       };
