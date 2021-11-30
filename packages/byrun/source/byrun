@@ -30,7 +30,6 @@ build_service_image ()  {
   docker load < "$result"
   docker tag "dex-$app_name" "plutus4binarapps/dex-$app_name"
   docker push "plutus4binarapps/dex-$app_name"
-  rm "$result"
 }
 
 help_msg () {
