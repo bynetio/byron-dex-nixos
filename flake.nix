@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-        cardano-node.url = "github:input-output-hk/cardano-node";
+    cardano-node.url = "github:input-output-hk/cardano-node";
   };
 
   outputs = { self, nixpkgs, cardano-node, ... }:
