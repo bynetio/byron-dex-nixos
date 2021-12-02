@@ -22,6 +22,11 @@
           iohkNix.overlays.crypto
           iohkNix.overlays.cardano-lib
           iohkNix.overlays.utils
+          (final: prev: {
+            commonLib = nixpkgs.lib
+            // iohkNix.lib
+            // final.cardanoLib;
+          })
           (import ./packages) ];
       };
     in {
@@ -29,6 +34,7 @@
         ec2-backend-byron-network = nixpkgs.lib.nixosSystem {
           inherit pkgs system;
           modules = [
+            cardano-node.nixosModules.cardano-node
             ./hosts # main configuration file for hosts
             ./roles/common # common configuration for any instance
             ./roles/services # services services configuration

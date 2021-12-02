@@ -1,14 +1,12 @@
 { pkgs, lib, config, ... }:
-let commonLib = with pkgs; lib // cardanoLib;
-in {
-  imports = [ ./cardano-node-service.nix ];
+{
   services.cardano-node = {
     enable = true;
     systemdSocketActivation = true;
     port = 3001;
     hostAddr = "127.0.0.1";
     environment = "testnet";
-    topology = commonLib.mkEdgeTopology {
+    topology = pkgs.commonLib.mkEdgeTopology {
       port = 3001;
       edgeNodes = [ "127.0.0.1" ];
       valency = 2;
@@ -24,7 +22,7 @@ in {
           scName = "cardano";
           scFormat = "ScText";
         }];
-        defaultScribes = [[ "JournalSK" "cardano" ]];
+        defaultScribes = [ [ "JournalSK" "cardano" ] ];
       };
   };
 
