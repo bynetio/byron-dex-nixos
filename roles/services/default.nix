@@ -11,6 +11,7 @@ in {
     topology = commonLib.mkEdgeTopology {
       port = 3001;
       edgeNodes = [ "127.0.0.1" ];
+      valency = 2;
     };
     cardanoNodePkgs = pkgs;
     nodeConfig =
