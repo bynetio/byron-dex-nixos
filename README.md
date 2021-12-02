@@ -1,7 +1,5 @@
 # Dex Nixos
 
-### Flake structure
-
 ### Updating flake
 
 In order to update flake inputs, simply use below commands:
