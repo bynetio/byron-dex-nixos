@@ -25,6 +25,7 @@
   # standard set of packages
   environment.systemPackages = with pkgs; [
     cardano-node
+    cardano-wallet
     byrun
     docker-compose
     git
