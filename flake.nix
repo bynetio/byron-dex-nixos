@@ -3,11 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
     iohkNix.url = "github:input-output-hk/iohk-nix";
     cardano-node.url = "github:input-output-hk/cardano-node";
   };
 
-  outputs = { self, nixpkgs, iohkNix, cardano-node, ... }:
+  outputs = { self, nixpkgs, flake-utils, iohkNix, cardano-node, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -33,5 +34,16 @@
           ];
         };
       };
-    };
+    } //
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          config = { allowUnfree = true; };
+        };
+      in {
+        devShell = pkgs.mkShell {
+          packages = with pkgs; [ rnix-lsp ];
+        };
+      });
 }
