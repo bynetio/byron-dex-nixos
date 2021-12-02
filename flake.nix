@@ -35,6 +35,14 @@
           inherit pkgs system;
           modules = [
             cardano-node.nixosModules.cardano-node
+
+            # FIXME Currently this module cannot be used with below error message
+            # error: The option `services.cardano-node.project' does not exist. Definition values:
+            # - In `/nix/store/dcjyag0dk3y85zmw7zgl3igri1b50qdq-source/flake.nix'
+            # In flake.nix of the cardano-wallet repo it used here:
+            # https://github.com/input-output-hk/cardano-wallet/blob/99e679f163e5e7bb5c28bda05e419ee85415414e/flake.nix#L39
+            # cardano-wallet.nixosModules.cardano-wallet
+
             ./hosts # main configuration file for hosts
             ./roles/common # common configuration for any instance
             ./roles/services # services services configuration

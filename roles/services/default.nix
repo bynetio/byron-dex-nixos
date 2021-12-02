@@ -1,16 +1,16 @@
 { pkgs, lib, config, ... }:
 {
-  services.cardano-node = {
+
+  # TODO cardano-wallet-service.nix could be found within cardano-wallet flake repository here:
+  # https://github.com/input-output-hk/cardano-wallet/blob/flake/nix/nixos/cardano-wallet-service.nix
+
+    services.cardano-node = {
     enable = true;
     systemdSocketActivation = true;
     port = 3001;
     hostAddr = "127.0.0.1";
     environment = "testnet";
-    topology = pkgs.commonLib.mkEdgeTopology {
-      port = 3001;
-      edgeNodes = [ "127.0.0.1" ];
-      valency = 2;
-    };
+    topology = ./config/testnet-topology.json;
     cardanoNodePkgs = pkgs;
     nodeConfig =
       config.services.cardano-node.environments.${config.services.cardano-node.environment}.nodeConfig
@@ -25,6 +25,5 @@
         defaultScribes = [ [ "JournalSK" "cardano" ] ];
       };
   };
-
   systemd.services.cardano-node.serviceConfig.Restart = lib.mkForce "no";
 }

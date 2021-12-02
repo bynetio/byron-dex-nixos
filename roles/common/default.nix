@@ -25,7 +25,12 @@
   # standard set of packages
   environment.systemPackages = with pkgs; [
     cardano-node
-    cardano-wallet
+
+    # FIXME Currently this derivation cannot compile. For full logs, run
+    # 'nix log /nix/store/60k2wzy1ip1ls9flfsvfcsn4hhd0sm90-cardano-wallet-core-lib-cardano-wallet-core-2021.11.11.drv'.
+    # on ec2 to investigate this
+    # cardano-wallet
+
     byrun
     docker-compose
     git
