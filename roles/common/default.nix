@@ -2,7 +2,7 @@
 
 {
   # common settings
-  networking.firewall.allowedTCPPorts = [ 8080 ];
+  networking.firewall.allowedTCPPorts = [ 8080 80 443 ];
   i18n.defaultLocale = "pl_PL.UTF-8";
   time.timeZone = "Europe/Warsaw";
   virtualisation.docker.enable = true;
@@ -24,8 +24,7 @@
 
   # standard set of packages
   environment.systemPackages = with pkgs; [
-    cardano-node
-
+    # cardano-node
     # FIXME Currently this derivation cannot compile. For full logs, run
     # 'nix log /nix/store/60k2wzy1ip1ls9flfsvfcsn4hhd0sm90-cardano-wallet-core-lib-cardano-wallet-core-2021.11.11.drv'.
     # on ec2 to investigate this
@@ -35,11 +34,38 @@
     docker-compose
     git
     htop
-    tmux
     ripgrep
+    tmux
     vim
+    yarn
+
+    nodePackages.node2nix
   ];
 
   # vim as a default editor
   environment.variables = { EDITOR = "vim"; };
+
+  # nginx
+  security.acme.acceptTerms = true;
+  security.acme.email = "p.placzynski+byron@binarapps.com";
+  users.users.nginx.extraGroups = [ "acme" ];
+
+  security.acme.certs."test.byron.network" = {
+    email = "p.placzynski+byron@binarapps.com";
+    group = "nginx";
+  };
+  
+  services.nginx = {
+    enable = true;
+
+    virtualHosts = {
+      "test.byron.network" = {
+        addSSL = true;
+        enableACME = true;
+        locations."/" = {
+          root = "/var/www/test.byron.network";
+        };
+      };
+    };
+  };
 }

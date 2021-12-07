@@ -113,11 +113,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1638265218,
-        "narHash": "sha256-KiF9/e7Sb1z+hZBaYg20Hv8Q2aJcNQ+HVh04Nw7jugM=",
+        "lastModified": 1638802523,
+        "narHash": "sha256-U3uB/poa9pnVUkwaK7BT5QPMYBl6Zbwr/PguK0ssQRQ=",
         "owner": "input-output-hk",
         "repo": "cardano-node",
-        "rev": "54119c80057f88af5acdd7d54969dd461e4cf26e",
+        "rev": "be12344d84bc5bf47e716bc697adb65eac642c65",
         "type": "github"
       },
       "original": {
@@ -165,6 +165,10 @@
         "flake-compat": "flake-compat_3",
         "flake-utils": "flake-utils_4",
         "haskellNix": "haskellNix_2",
+        "hostNixpkgs": [
+          "cardano-wallet",
+          "nixpkgs"
+        ],
         "iohkNix": "iohkNix_2",
         "nixpkgs": [
           "cardano-wallet",
@@ -173,11 +177,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1638445256,
-        "narHash": "sha256-7yFNrF0LllX87Pe8tI/DUN0GIpfhWymnEEtYe4z4vlU=",
+        "lastModified": 1638807784,
+        "narHash": "sha256-feNuCCYPtrefQADhA3zWPlnNh0qq9XlYl68tECqnlV4=",
         "owner": "input-output-hk",
         "repo": "cardano-wallet",
-        "rev": "99e679f163e5e7bb5c28bda05e419ee85415414e",
+        "rev": "9272622143975b38d9db33f130924debad1b2cb4",
         "type": "github"
       },
       "original": {
@@ -833,11 +837,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1638452654,
-        "narHash": "sha256-BXNQev9j6ANWvrFb7DrRt8SMkv1V08hg622ki9UwPic=",
+        "lastModified": 1638872985,
+        "narHash": "sha256-yM5Ad2t4m6iyreYt8YfK3PhDKBGPAsza49B7hyz5mo4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a78dd785b29bbbcad5490282308b9dbdc244a0f3",
+        "rev": "be1c35e23d99b9db6c44aeba3e2a5d8303eaa086",
         "type": "github"
       },
       "original": {
@@ -847,11 +851,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1638376152,
-        "narHash": "sha256-ucgLpVqhFnClH7YRUHBHnmiOd82RZdFR3XJt36ks5fE=",
+        "lastModified": 1638535497,
+        "narHash": "sha256-tk5LNbdkUhALp00+r5ZmQ3t7n2d5M7YUQB+MznWvVOg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "6daa4a5c045d40e6eae60a3b6e427e8700f1c07f",
+        "rev": "c71f061c68ba8ce53471b767d5049cbd0f3d8490",
         "type": "github"
       },
       "original": {

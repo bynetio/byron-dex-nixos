@@ -9,7 +9,8 @@
     cardano-wallet.url = "github:input-output-hk/cardano-wallet/flake";
   };
 
-  outputs = { self, nixpkgs, flake-utils, iohkNix, cardano-node, cardano-wallet, ... }:
+  outputs =
+    { self, nixpkgs, flake-utils, iohkNix, cardano-node, cardano-wallet, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -23,18 +24,18 @@
           iohkNix.overlays.cardano-lib
           iohkNix.overlays.utils
           (final: prev: {
-            commonLib = nixpkgs.lib
-            // iohkNix.lib
-            // final.cardanoLib;
+            commonLib = nixpkgs.lib // iohkNix.lib // final.cardanoLib;
           })
-          (import ./packages) ];
+          (import ./packages)
+        ];
       };
     in {
       nixosConfigurations = {
         ec2-backend-byron-network = nixpkgs.lib.nixosSystem {
           inherit pkgs system;
           modules = [
-            cardano-node.nixosModules.cardano-node
+            # cardano-node.nixosModules.cardano-node
+            # cardano-wallet.nixosModules.cardano-wallet
 
             # FIXME Currently this module cannot be used with below error message
             # error: The option `services.cardano-node.project' does not exist. Definition values:
@@ -45,21 +46,16 @@
 
             ./hosts # main configuration file for hosts
             ./roles/common # common configuration for any instance
-            ./roles/services # services services configuration
+            # ./roles/services # services services configuration
             ./users/dex # `dex` user setup
           ];
         };
       };
-    } //
-    flake-utils.lib.eachDefaultSystem (system:
+    } // flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
           inherit system;
           config = { allowUnfree = true; };
         };
-      in {
-        devShell = pkgs.mkShell {
-          packages = with pkgs; [ rnix-lsp ];
-        };
-      });
+      in { devShell = pkgs.mkShell { packages = with pkgs; [ rnix-lsp ]; }; });
 }
