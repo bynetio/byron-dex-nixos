@@ -33,7 +33,6 @@
        ec2.zfs.enable      = true;
        networking.hostId   = "00000000";
        networking.hostName = "ec2-backend-byron-network";
-       networking.firewall.allowedTCPPorts = [ 80 443 8080 ];
      })
   ];
 }

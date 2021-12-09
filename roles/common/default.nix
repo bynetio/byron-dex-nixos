@@ -63,7 +63,7 @@
         addSSL = true;
         enableACME = true;
         locations."/" = {
-          root = "/var/www/test.byron.network";
+          root = "/var/www/test.byron.network/build";
         };
       };
     };
