@@ -62,10 +62,19 @@
       "test.byron.network" = {
         addSSL = true;
         enableACME = true;
-        locations."/" = {
-          root = "/var/www/test.byron.network/build";
+        locations."/" = { proxyPass = "http://127.0.0.1:3000"; };
+        locations."^~ /tokens-registry" = {
+          extraConfig = ''
+            rewrite ^/tokens-registry/(.*)''$ /''$1 break;
+            proxy_pass http://localhost:9990/;
+          '';
         };
       };
     };
+  };
+
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_11;
   };
 }
